@@ -1,0 +1,11 @@
+MAX31856drv.c:67:6:SPI_WriteByte	16	static
+MAX31856drv.c:72:9:SPI_ReadByte	16	static
+MAX31856drv.c:81:6:maxim_31856_write_register	16	static
+MAX31856drv.c:89:9:maxim_31856_read_register	24	static
+MAX31856drv.c:100:6:maxim_31856_read_nregisters	16	static
+MAX31856drv.c:108:6:maxim_31856_init	8	static
+MAX31856drv.c:142:6:maxim_stop_conversion	8	static
+MAX31856drv.c:157:6:maxim_start_conversion	16	static
+MAX31856drv.c:165:6:maxim_disable_oc_fault_detection	8	static
+MAX31856drv.c:177:6:maxim_set_oc_fault_detection	16	static
+MAX31856drv.c:185:6:maxim_clear_fault_status	8	static
