@@ -19,4 +19,4 @@ stm32g4xx_hal_flash_ex.c:1222:17:FLASH_OB_GetBootLock	4	static
 stm32g4xx_hal_flash_ex.c:1241:13:FLASH_OB_GetWRP	24	static
 stm32g4xx_hal_flash_ex.c:1280:17:FLASH_OB_GetRDP	16	static
 stm32g4xx_hal_flash_ex.c:1308:17:FLASH_OB_GetUser	16	static
-stm32g4xx_hal_flash_ex.c:1327:13:FLASH_OB_GetPCROP	32	static
+stm32g4xx_hal_flash_ex.c:1327:13:FLASH_OB_GetPCROP	40	static

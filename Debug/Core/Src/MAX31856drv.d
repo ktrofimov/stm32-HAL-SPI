@@ -1,11 +1,11 @@
 Core/Src/MAX31856drv.o: ../Core/Src/MAX31856drv.c \
- ../Core/Src/MAX31856drv.h ../Core/Inc/spi.h ../Core/Inc/main.h \
+ ../Core/Inc/MAX31856drv.h ../Core/Inc/spi.h ../Core/Inc/main.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
  ../Core/Inc/stm32g4xx_hal_conf.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h \
- ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h \
+ ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g473xx.h \
  ../Drivers/CMSIS/Include/core_cm4.h \
  ../Drivers/CMSIS/Include/cmsis_version.h \
  ../Drivers/CMSIS/Include/cmsis_compiler.h \
@@ -24,12 +24,17 @@ Core/Src/MAX31856drv.o: ../Core/Src/MAX31856drv.c \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usb.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rtc.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rtc_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi_ex.h
 
-../Core/Src/MAX31856drv.h:
+../Core/Inc/MAX31856drv.h:
 
 ../Core/Inc/spi.h:
 
@@ -45,7 +50,7 @@ Core/Src/MAX31856drv.o: ../Core/Src/MAX31856drv.c \
 
 ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h:
 
-../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h:
+../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g473xx.h:
 
 ../Drivers/CMSIS/Include/core_cm4.h:
 
@@ -83,9 +88,19 @@ Core/Src/MAX31856drv.o: ../Core/Src/MAX31856drv.c \
 
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h:
 
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd.h:
+
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usb.h:
+
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd_ex.h:
+
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h:
 
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h:
+
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rtc.h:
+
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rtc_ex.h:
 
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h:
 

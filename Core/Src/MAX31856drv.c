@@ -61,8 +61,8 @@
 
 #include "MAX31856drv.h"
 
-#define  SPI_CS_LOW       HAL_GPIO_WritePin( SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, GPIO_PIN_RESET);
-#define  SPI_CS_HIGH      HAL_GPIO_WritePin( SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, GPIO_PIN_SET);
+#define  SPI_CS_LOW       HAL_GPIO_WritePin( CS_1_GPIO_Port, CS_1_Pin, GPIO_PIN_RESET);
+#define  SPI_CS_HIGH      HAL_GPIO_WritePin( CS_1_GPIO_Port, CS_1_Pin, GPIO_PIN_SET);
 
 void SPI_WriteByte(uint8_t b)
 {
@@ -74,6 +74,11 @@ uint8_t SPI_ReadByte()
 	uint8_t b;
 	HAL_SPI_Receive( &hspi1, &(b), 1, HAL_MAX_DELAY);
 	return b;
+}
+
+void SPI_Read(uint8_t *buff, uint8_t nBytes)
+{
+	HAL_SPI_Receive( &hspi1, buff, nBytes, HAL_MAX_DELAY);
 }
 
 uint8_t uch_cr0,uch_cr1,uch_mask;
@@ -106,35 +111,36 @@ void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff
 }
 
 void maxim_31856_init(void)
-{  //ʹ�ܹ��ϼ�⣬ѡ��50Hz�˲�   ����ģʽ�����ж�ģʽ
-   uch_cr0= OC_Fault_Enable_1|NRF_50Hz| Interrupt_Mode;  //����CR0
-   //���ڲ��õ��β���ģʽ���������ÿ�β������������ȵ�żѡ��K���ȵ�ż
-   uch_cr1&= Average_1_Bit ;
+{
+   //Enable fault detection, select 50Hz filtering, use interrupt mode as fault mode
+   uch_cr0 = OC_Fault_Enable_1|NRF_50Hz| Interrupt_Mode; //Configure CR0
+   //Because the single measurement mode is adopted, the output result of each measurement is set. Thermocouple selection K-type thermocouple
+   uch_cr1&= Average_1_Bit;
    uch_cr1|=TC_TypeK;
-   //����ʹ�ܹ��ϼ�⣬��ˣ��������κεĹ��ϼ�⣬���Ը���Ҫ��ѡ�����ε�����Ҫ���Ĺ���
-   uch_mask=No_Fault_Mask ;  
+   //Because the fault detection is enabled, no fault detection is shielded, and the faults that do not need to be detected can be shielded according to the requirements
+   uch_mask=No_Fault_Mask;
    
-   maxim_31856_write_register(0x80, uch_cr0);  //����CR0
-   maxim_31856_write_register(0x81, uch_cr1);  //����CR1
-   maxim_31856_write_register(0x82,uch_mask);  //����MASK
+   maxim_31856_write_register(0x80, uch_cr0); //Set CR0
+   maxim_31856_write_register(0x81, uch_cr1); //Set CR1
+   maxim_31856_write_register(0x82,uch_mask); //Set MASK
    
-   //д��˹������޼Ĵ������ɸ�����Ҫ����
+   //Write the cold junction fault threshold register, which can be set as required
    maxim_31856_write_register(0x83,0x7F);
    maxim_31856_write_register(0x84,0xC0);
-   //д�ȵ�ż�������޼Ĵ������ɸ�����Ҫ����
+   //Write the thermocouple fault threshold register, which can be set as required
    maxim_31856_write_register(0x85,0x7F);
    maxim_31856_write_register(0x86,0xFF);
    maxim_31856_write_register(0x87,0x80);
    maxim_31856_write_register(0x88,0x00);
-   //д����¶�ʧ���Ĵ������ɸ�����Ҫ����
+   //Write the cold junction temperature offset register, which can be set as required
    maxim_31856_write_register(0x89,0x00);
-   //�����ֹʹ�������ڲ���˲�����д����¶ȼĴ������ɸ�����Ҫ����
-   //��������ⲿ����¶ȴ�������������¶ȣ���Ҫ��ÿ�β�������¶Ⱥ����
-   //����¶ȼĴ�����
+   //If it is forbidden to use the internal cold junction compensation of the device, write the cold junction temperature register, which can be set as required
+   //If the external cold junction temperature sensor is used to measure the cold junction temperature, it needs to be updated every time the cold junction temperature is measured
+   //The cold junction temperature register.
    maxim_31856_write_register(0x8A,0x00);
    maxim_31856_write_register(0x8B,0x00);
-  
 }
+
 /*****************************************************
 
 CR0 Bit operation
